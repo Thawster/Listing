@@ -1,0 +1,143 @@
+var favorites;
+var grid;
+
+function setup() {
+  createCanvas(500, 500);
+  
+  // data from Ramp Camp 2019 attendees
+  favorites = [
+    "dog",
+    "dog",
+    "dog",
+    "crow",
+    "snake",
+    "cow",
+    "lion",
+    "turtle",
+    "panda",
+    "snake",
+    "snake",
+    "cat",
+    "tiger",
+    "owl",
+    "penquin",
+    "honey badger",
+    "penguin",
+    "dog",
+    "frog",
+    "dog",
+    "bunny",
+    "dog",
+    "dog",
+    "dog",
+    "dog",
+    "polar bear",
+    "cheetah",
+    "eagle",
+    "dog",
+    "honey badger",
+    "dog",
+    "cat",
+    "ocelot",
+    "dog",
+    "lion",
+    "octopus",
+    "tiger",
+    "horse",
+  ]; 
+  order();
+ 
+}
+
+function draw() {
+    background(20);
+    var dataCount = favorites.length;
+
+    fill(200);
+    textSize(20);
+    //text("there are " + dataCount + " data points in the array", 30, 30)
+    /* using the info in the favorites array,
+    create a fun way to display the data using
+    p5.js functions */
+/*var img = document.createElement("img");
+img.src = "image.png";
+var src = document.getElementById("x");
+src.appendChild(img);*/
+for (var x = 0; x < objsize; x++) {
+        grid[x].draw();
+}
+
+}
+
+class box{
+  constructor(name, row, size){
+    this.name=name;
+    this.row=row;
+    this.size=size;
+  }
+
+  draw(){
+    fill(200);
+    textSize(20);
+    text(this.name, 10, this.row*20)
+    textSize(15);
+    text(this.size, width/2-30, this.row*20)
+    fill(0,200,0);
+    noStroke();
+    rect(width/2 , this.row*20-15, this.size*20, 15);
+  }
+}
+
+function order(){
+var sorted_arr = favorites.slice().sort(); 
+objsize = 0;
+//print(sorted_arr)
+var obj = {}
+var boxes = new Array(100);
+for (var i = 0; i < sorted_arr.length - 1; i++) {
+  var name = sorted_arr[i]
+  var num = 1;
+  while(sorted_arr[i] == sorted_arr[i+1]){
+    num++
+    i++;
+  }
+  if(sorted_arr[i] != sorted_arr[i+1]){
+    boxes[objsize] = new box(name,objsize+1,num);
+    objsize++;
+  }
+  obj[name] = num;
+  
+}
+boxes.length=objsize;
+grid=boxes;
+//print(grid);
+// var results1 = [];
+// for (var i = 0; i < sorted_arr.length - 1; i++) {
+    // if (sorted_arr[i + 1] == sorted_arr[i]) {
+        // results.push(sorted_arr[i]);
+    // }
+// }
+/*for (var i = 0; i < sorted_arr.length - 1; i++) {
+  if(results[i] == results[i+1]){
+    results.splice[i+1,1];
+    temp++;
+    //i--;
+  }
+}
+*/
+/*
+obj.dog = 12
+obj.cat = 2
+obj['cow'] = 3
+var name = 'monkey'
+obj[name] = 7
+
+console.log(obj.name === 'dog')
+console.log(obj.lizard === 'dog')
+console.log(obj['lizard'] === undefined)
+// { dog:12, cat:2, cow: 3, monkey: 7 }*/
+
+//print(temp);
+
+}
+
